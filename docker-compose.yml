@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+  banco_de_dados:
+    container_name: banco_de_dados
+    image: postgres:latest
+    environment:
+      - POSTGRES_PASSWORD=admin123
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=alista_de_tarefas
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data-postgres:/var/lib/postgresql/data
+    networks:
+      docker_network_padrao:
+        ipv4_address: 172.18.0.10
+
+networks:
+  docker_network_padrao:
+    ipam:
+      config:
+        - subnet: 172.18.0.0/16
